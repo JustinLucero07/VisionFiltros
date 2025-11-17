@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+          .container{
+               margin: 0;
+               padding: 0;
+               width: 100%;
+               height: 100vh;
+               background-color: #f1f1bc;
+               color: black;
+               text-align: center;
+          }
+          .containerHeader{
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+          }
+     </style>
+     <title>Videostreaming ESP32-CAM</title>
+</head>
+<body class = "container">
+     <div class="containerHeader">
+          <h1>Video Streaming</h1>
+          <img src="{{ url_for('static', filename='Header.webp') }}" alt="Image header" width="50%">
+     </div>
+     <img src="{{ url_for('video_stream') }}">
+</body>
+</html>

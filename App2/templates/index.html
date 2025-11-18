@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Operaciones Morfológicas - Imágenes Médicas</title>
+     <style>
+          body { 
+               font-family: Arial; 
+               background-color: #f1f1bc; 
+               text-align: center; 
+               margin: 0; 
+               padding: 0;
+          }
+          h1 { margin-top: 20px; }
+          h2 { margin-top: 30px; margin-bottom: 10px; }
+          .image-group { 
+               display: flex; 
+               justify-content: center; 
+               align-items: flex-start; 
+               gap: 20px; 
+               flex-wrap: wrap;
+               margin-bottom: 50px; 
+          }
+          .image-container {
+               display: flex; 
+               flex-direction: column; 
+               align-items: center; 
+               border: 2px solid #333; 
+               padding: 5px; 
+               background-color: #fff;
+               border-radius: 5px;
+          }
+          .image-container img { 
+               max-width: 200px; 
+               height: auto; 
+               margin-bottom: 5px; 
+          }
+          .image-container p { 
+               margin: 0; 
+               font-weight: bold; 
+          }
+     </style>
+</head>
+<body>
+     <h1>Operaciones Morfológicas sobre Imágenes Médicas</h1>
+
+     {% for original, imgs in processed_images.items() %}
+         <h2>Resultados para: {{ original }}</h2>
+         <div class="image-group">
+             {% for name, filename in imgs.items() %}
+                 <div class="image-container">
+
+                     {% if 'original' in name %}
+                         <p>Esta es la Original</p>
+                     {% elif 'erosion' in name %}
+                         <p>Erosión</p>
+                     {% elif 'dilatation' in name %}
+                         <p>Dilatación</p>
+                     {% elif 'top_hat' in name %}
+                         <p>Top Hat</p>
+                     {% elif 'black_hat' in name %}
+                         <p>Black Hat</p>
+                     {% elif 'enhanced' in name %}
+                         <p>Original + (Top Hat - Black Hat)</p>
+                     {% else %}
+                         <p>{{ name }}</p>
+                     {% endif %}
+
+                     <img src="data:image/png;base64,{{ filename }}" alt="{{ name }}">
+                 </div>
+             {% endfor %}
+         </div>
+     {% endfor %}
+</body>
+</html>
